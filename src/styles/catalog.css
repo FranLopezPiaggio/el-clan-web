@@ -1,0 +1,226 @@
+/* Estilos base para el catálogo */
+.catalog {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  padding: 2rem 0;
+  gap: 1rem;
+  position: relative;
+  margin: 0 10px;
+  padding: 2rem 1rem;
+  scrollbar-width: 10px; 
+}
+
+/* Ocultar scrollbar pero mantener funcionalidad */
+.catalog::-webkit-scrollbar {
+  display: none;
+}
+
+/* Contenedor para animación de desplazamiento automático */
+.catalog-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 2rem 0;
+}
+
+/* Botones de navegación */
+.catalog-nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.catalog-nav button {
+  background-color: rgba(212, 175, 55, 0.8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.catalog-nav button:hover {
+  background-color: rgba(212, 175, 55, 1);
+  transform: scale(1.1);
+}
+
+.catalog-prev {
+  margin-left: 1rem;
+}
+
+.catalog-next {
+  margin-right: 1rem;
+}
+
+/* Estilos para las tarjetas de producto */
+.product-card {
+  flex: 0 0 calc(20% - 1rem); /* 5 tarjetas por fila con margen */
+  width: calc(20% - 1rem);
+  min-width: calc(20% - 1rem);
+  max-width: calc(20% - 1rem);
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  scroll-snap-align: start;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.05);
+}
+
+.product-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.product-size {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-price {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #d4af37;
+}
+
+.product-description {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: #444;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-IBU, .product-ABV {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.product-add-to-cart {
+  background-color: #d4af37;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: auto;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.product-add-to-cart:hover {
+  background-color: #c49b2a;
+  transform: translateY(-2px);
+}
+
+.product-add-to-cart:active {
+  transform: translateY(0);
+}
+
+.product-out-of-stock {
+  color: #e53e3e;
+  font-weight: bold;
+  margin-top: auto;
+  text-align: center;
+  padding: 0.5rem;
+  border: 1px solid #e53e3e;
+  border-radius: 4px;
+}
+
+/* Animación para el slider */
+@keyframes slideAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-280px * 4)); /* Ajustar según el número de productos */
+  }
+}
+
+/* Indicadores de paginación */
+.catalog-indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 0.5rem;
+}
+
+.catalog-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.catalog-indicator.active {
+  background-color: #d4af37;
+  transform: scale(1.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .product-card {
+    width: 240px;
+  }
+  
+  .catalog-nav button {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-card {
+    width: 220px;
+  }
+  
+  .catalog-nav {
+    display: none;
+  }
+}

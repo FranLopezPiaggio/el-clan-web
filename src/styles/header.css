@@ -1,0 +1,39 @@
+.header {
+  position: relative;
+  height: 10dvh;
+}
+
+.header div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #eaeaea;
+  height: 100%;
+}
+
+.header-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 70%;
+  width: 150px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  margin-top: 88px;
+}
+
+.header-nav-left {
+    
+}
+
+.header-nav-right {
+
+}
+

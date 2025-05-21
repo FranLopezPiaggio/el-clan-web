@@ -1,0 +1,74 @@
+[{
+    "id": 1,
+    "name": "Golden",
+    "size": "500ml",
+    "price": 500,
+    "description": "Golden Beer, fresh, delicious, light.",
+    "img": "golden.webp",
+    "maridaje": "Chips, Lemon",
+    "IBU": 20,
+    "ABV": 4.5,
+    "inStock": true
+},
+{
+    "id": 2,
+    "name": "Ipa",
+    "size": "500ml",
+    "price": 500,
+    "img": "ipa.webp",
+    "description": "Ipa Beer, fresh, delicious, light.",
+    "maridaje": "Chips, Lemon",
+    "IBU": 20,
+    "ABV": 4.5,
+    "inStock": true
+},
+{
+    "id": 3,
+    "name": "Ipa",
+    "size": "500ml",
+    "price": 500,
+    "img": "ipa.webp",
+    "description": "Ipa Beer, fresh, delicious, light.",
+    "maridaje": "Chips, Lemon",
+    "IBU": 20,
+    "ABV": 4.5,
+    "inStock": true
+},
+{
+    "id": 4,
+    "name": "Ipa",
+    "size": "500ml",
+    "price": 500,
+    "img": "ipa.webp",
+    "description": "Ipa Beer, fresh, delicious, light.",
+    "maridaje": "Chips, Lemon",
+    "IBU": 20,
+    "ABV": 4.5,
+    "inStock": true
+},
+{
+    "id": 5,
+    "name": "Ipa",
+    "size": "500ml",
+    "price": 500,
+    "img": "ipa.webp",
+    "description": "Ipa Beer, fresh, delicious, light.",
+    "maridaje": "Chips, Lemon",
+    "IBU": 20,
+    "ABV": 4.5,
+    "inStock": true
+},
+{
+    "id": 6,
+    "name": "Ipa",
+    "size": "500ml",
+    "price": 500,
+    "img": "ipa.webp",
+    "description": "Ipa Beer, fresh, delicious, light.",
+    "maridaje": "Chips, Lemon",
+    "IBU": 20,
+    "ABV": 4.5,
+    "inStock": true
+}
+
+]

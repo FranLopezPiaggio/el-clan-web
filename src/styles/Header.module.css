@@ -1,0 +1,77 @@
+.mainHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: rgba(17, 17, 17, 0.7);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    padding-top: 10px;
+}
+
+.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.mainHeader__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+    position: relative;
+}
+
+.mainHeader__container__logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 110;
+}
+
+.mainHeader__container__logo__img {
+    width: 150px; /* Increase the size */
+    height: 150px; /* Increase the size */
+    border-radius: 50%; /* Make it round */
+    object-fit: cover; /* Ensure the image covers the area */
+}
+
+.mainNav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.mainNav__left,
+.mainNav__right {
+    display: flex;
+    align-items: center;
+}
+
+.mainNav__left ul,
+.mainNav__right ul {
+    display: flex;
+    gap: 2rem;
+}
+
+.mainNav__left ul li a,
+.mainNav__right ul li a {
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.mainNav__left ul li a:hover,
+.mainNav__right ul li a:hover {
+    color: #d4af37;
+}
