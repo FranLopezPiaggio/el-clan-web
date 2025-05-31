@@ -1,0 +1,176 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// PRODUCTO (cada cerveza que vendes)
+model Product {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Información básica
+  name        String               // "El Clan IPA"
+  slug        String   @unique     // "el-clan-ipa" (para URLs)
+  description String               // Descripción detallada
+  price       Float                // 850.00
+  
+  // Información cervecera específica
+  beerType    String               // "IPA", "Lager", "Stout"
+  ibu         Int?                 // Amargor (International Bitterness Units)
+  abv         Float                // Alcohol por volumen
+  measure     String               // "330ml", "500ml", "1L"
+  
+  // Control de inventario
+  stock       Int      @default(0) // Cantidad disponible
+  isActive    Boolean  @default(true) // ¿Está a la venta?
+  
+  // Metadata
+  imageUrl    String?              // URL de la imagen
+  pairing     String?              // Maridaje recomendado
+  
+  // RELACIONES
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+  orderItems  OrderItem[]          // En qué pedidos aparece
+  
+  @@map("products") // Nombre de tabla en BD
+}
+
+// CATEGORÍA (tipos de cerveza)
+model Category {
+  id          String    @id @default(cuid())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  name        String    @unique    // "IPA", "Lager"
+  slug        String    @unique    // "ipa", "lager"
+  description String?              // Descripción de la categoría
+  
+  // RELACIONES
+  products    Product[]            // Productos de esta categoría
+  
+  @@map("categories")
+}
+
+// CLIENTE (quien compra)
+model Customer {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Información personal
+  name      String
+  email     String?  @unique
+  phone     String   @unique      // Principal forma de contacto
+  address   String?              // Dirección de entrega
+  
+  // Geolocalización (para delivery)
+  latitude  Float?
+  longitude Float?
+  
+  // Vinculación con usuario registrado (opcional)
+  userId    String?  @unique     // ID de Supabase Auth
+  
+  // 🔗 RELACIONES
+  orders    Order[]              // Pedidos de este cliente
+  
+  @@map("customers")
+}
+
+// PEDIDO (cada compra)
+model Order {
+  id          String    @id @default(cuid())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  // Estado del pedido
+  status      OrderStatus @default(PENDING)
+  
+  // Información del pedido
+  total       Float                // Monto total
+  notes       String?              // Notas del cliente
+  
+  // Información del cliente (relación)
+  customerId  String
+  customer    Customer  @relation(fields: [customerId], references: [id])
+  
+  // 🔗 RELACIONES
+  items       OrderItem[]          // Productos en este pedido
+  
+  // Tracking de WhatsApp
+  whatsappSent Boolean @default(false)
+  whatsappSentAt DateTime?
+  
+  // Control de pedidos abandonados
+  expiresAt   DateTime? // Se elimina si no se confirma
+  
+  @@map("orders")
+}
+
+// ITEM DE PEDIDO (cada producto dentro de un pedido)
+model OrderItem {
+  id        String  @id @default(cuid())
+  
+  quantity  Int                  // ¿Cuántos?
+  price     Float                // Precio al momento del pedido
+  
+  // 🔗 RELACIONES
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  
+  @@map("order_items")
+}
+
+// USUARIO ADMIN (quien gestiona el CMS)
+model AdminUser {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  userId    String   @unique     // ID de Supabase Auth
+  email     String   @unique
+  role      AdminRole @default(ADMIN)
+  isActive  Boolean   @default(true)
+  
+  @@map("admin_users")
+}
+
+// EVENTOS DE ANALYTICS (para métricas)
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  
+  eventName String               // "product_view", "add_to_cart"
+  eventData Json?                // Datos adicionales
+  sessionId String?              // Sesión del usuario
+  userId    String?              // Usuario si está logueado
+  
+  @@map("analytics_events")
+}
+
+// ENUMS (valores predefinidos)
+enum OrderStatus {
+  PENDING      // Pedido creado, esperando confirmación
+  CONFIRMED    // Confirmado por WhatsApp
+  PREPARING    // En preparación
+  READY        // Listo para entrega
+  DELIVERED    // Entregado
+  CANCELLED    // Cancelado
+  ABANDONED    // Abandonado (no confirmado)
+}
+
+enum AdminRole {
+  SUPER_ADMIN  // Puede todo
+  ADMIN        // Gestiona productos y pedidos
+  VIEWER       // Solo ve información
+}
