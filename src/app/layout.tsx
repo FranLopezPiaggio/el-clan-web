@@ -8,8 +8,9 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "El Clan Cervezas",
+  title: "Cervezas El Clan",
   description: "Cerveza Artesanal de calidad para tus encuentros",
+  
 };
 
 export default function RootLayout({
