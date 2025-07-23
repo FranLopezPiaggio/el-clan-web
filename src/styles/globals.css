@@ -1,5 +1,30 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Brewski';
+  src: url('/fonts/Brewski.woff2') format('woff2'),
+       url('/fonts/Brewski.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --main-font-family: 'Brewski', Arial, sans-serif;
+  --green: #476946;
+  --red: #873b39;
+  --gold: #ac8744;
+  --black: #000000;
+}
+
+* {
+  font-family: 'Brewski', Arial, sans-serif;;
+}
+
+body {
+  font-family: 'Brewski', Arial, sans-serif;;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -21,5 +46,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--main-font-family);
 }

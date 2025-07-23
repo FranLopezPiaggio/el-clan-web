@@ -2,10 +2,17 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from '@/styles/Header.module.css';
+import { CartButton } from '@/components/orders/CartButton';
 
-const Logo = './img/El_Clan_Logo.png'
 
-const Header: React.FC = () => {
+import Image from 'next/image';
+import LogoImg from '@/assets/img/El-clan-calado-blanco.jpg';
+
+type HeaderProps = {
+  onCartButtonClick: () => void;
+};
+
+const Header: React.FC<HeaderProps> = ({ onCartButtonClick }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -44,7 +51,15 @@ const Header: React.FC = () => {
           </div>
           <div className={styles.mainHeader__container__logo}>
             <Link href="/">
-              <img src={Logo} alt="Logo" className={styles.mainHeader__container__logo__img} />
+              {/* Solución 1: Usar el componente Image de Next.js */}
+              <Image
+                src={LogoImg}
+                alt="Logo"
+                className={styles.mainHeader__container__logo__img}
+                width={120}
+                height={120}
+                priority
+              />
             </Link>
           </div>
           <div className={styles.mainNav__right}>
@@ -53,6 +68,9 @@ const Header: React.FC = () => {
                 e.preventDefault();
                 document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
               }}>Nuestras Cervezas</Link></li>
+              <li className={styles.cartButtonContainer}>
+                <CartButton onClick={onCartButtonClick} />
+              </li>
             </ul>
           </div>
         </nav>

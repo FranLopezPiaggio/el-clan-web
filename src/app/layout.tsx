@@ -1,16 +1,9 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
-import "../styles/globals.css";
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-montserrat",
-});
+import "@/styles/globals.css";
 
 export const metadata: Metadata = {
   title: "Cervezas El Clan",
   description: "Cerveza Artesanal de calidad para tus encuentros",
-  
 };
 
 export default function RootLayout({
@@ -20,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${montserrat.variable} antialiased`}>
+      <body className={`antialiased`}>
         {children}
       </body>
     </html>

@@ -1,7 +1,6 @@
-// src/components/admin/AdminHeader.tsx
 'use client'
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { createBrowserClient } from '@supabase/ssr'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
 import { LogOut, User } from 'lucide-react'
@@ -13,7 +12,10 @@ interface AdminHeaderProps {
 
 export default function AdminHeader({ user, adminUser }: AdminHeaderProps) {
   const router = useRouter()
-  const supabase = createClientComponentClient()
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  )
 
   const handleLogout = async () => {
     await supabase.auth.signOut()

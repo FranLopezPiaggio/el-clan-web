@@ -1,26 +1,30 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '@/components/ui/Header'
 import Footer from '@/components/ui/Footer'
 import Hero from '@/components/ui/Hero'
-import { Catalog } from '@/components/catalog/Catalog'
 import History from '@/components/ui/OurHistory'
 import { Cart } from '@/components/orders/Cart'
+import Catalog from '@/components/catalog/Catalog'
 
-import { useCart } from '@/features/cart/useCart'
-
+import { useCart } from '@/hooks/cart/useCart'
 
 function Page() {
-    
     const { add } = useCart()
+    const [isCartOpen, setIsCartOpen] = useState(false)
+
+    const toggleCart = () => {
+        setIsCartOpen(!isCartOpen)
+    }
 
     return (
         <div>
-            <Header/>
-            <Cart />
+            <Header onCartButtonClick={toggleCart}/>
+            <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
             <main>
                 <Hero/>
-                <Catalog onAddToCart= {add}/>
+                {/* <Catalog onAddToCart={add}/> */}
+                <Catalog/>
                 <History/>
             </main>
             <Footer/>

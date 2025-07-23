@@ -38,9 +38,8 @@
 }
 
 .mainHeader__container__logo__img {
-    width: 150px; /* Increase the size */
+    width: auto; /* Increase the size */
     height: 150px; /* Increase the size */
-    border-radius: 50%; /* Make it round */
     object-fit: cover; /* Ensure the image covers the area */
 }
 
@@ -67,6 +66,7 @@
 .mainNav__right ul li a {
     color: #ffffff;
     font-size: 1.4rem;
+    font-family: var(--main-font-family);
     font-weight: 400;
     transition: color 0.3s ease;
 }
@@ -74,4 +74,15 @@
 .mainNav__left ul li a:hover,
 .mainNav__right ul li a:hover {
     color: #d4af37;
+}
+
+.cartButtonContainer {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.cartButtonContainer .cart-button {
+  width: 40px;
+  height: 40px;
 }
