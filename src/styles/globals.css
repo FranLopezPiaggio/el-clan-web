@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Grenze:wght@200..900&display=swap');
 
 @font-face {
   font-family: 'Brewski';
@@ -11,6 +11,7 @@
 
 :root {
   --main-font-family: 'Brewski', Arial, sans-serif;
+  --grenze-font: var(--font-grenze), serif;
   --green: #476946;
   --red: #873b39;
   --gold: #ac8744;
@@ -18,11 +19,51 @@
 }
 
 * {
-  font-family: 'Brewski', Arial, sans-serif;;
+  font-family: var(--grenze-font);
 }
 
 body {
-  font-family: 'Brewski', Arial, sans-serif;;
+  font-family: var(--grenze-font);
+}
+
+/* Configuración de títulos con Grenze */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--grenze-font);
+  font-weight: 400;
+}
+
+h1, h2 {
+  font-weight: 500;
+}
+
+/* Configuración de párrafos y textos descriptivos con Grenze */
+p, .text-descriptive, .text-detail, small, .small-text {
+  font-family: var(--grenze-font);
+  font-weight: 250;
+}
+
+/* Clases utilitarias para fuentes */
+.font-grenze {
+  font-family: var(--grenze-font);
+}
+
+.font-grenze-light {
+  font-family: var(--grenze-font);
+  font-weight: 250;
+}
+
+.font-grenze-normal {
+  font-family: var(--grenze-font);
+  font-weight: 400;
+}
+
+.font-grenze-medium {
+  font-family: var(--grenze-font);
+  font-weight: 500;
+}
+
+.font-brewski {
+  font-family: var(--main-font-family);
 }
 
 :root {
