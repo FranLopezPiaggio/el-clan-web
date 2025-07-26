@@ -23,7 +23,6 @@ function Page() {
             <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
             <main>
                 <Hero/>
-                {/* <Catalog onAddToCart={add}/> */}
                 <Catalog/>
                 <History/>
             </main>
