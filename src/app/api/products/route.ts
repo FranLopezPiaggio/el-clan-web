@@ -2,35 +2,41 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { createServerSupabaseClient } from '@/lib/supabase/server'
+import { productFiltersSchema, createProductSchema } from '@/lib/validations/product'
+import { ApiResponse } from '@/types/products'
 
 // GET /api/products - Obtener productos (público)
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
     
-    // Filtros opcionales
-    const category = searchParams.get('category')
-    const beerType = searchParams.get('beerType') 
-    const inStock = searchParams.get('inStock')
-    const search = searchParams.get('search')
+    // Validar filtros con Zod
+    const filters = productFiltersSchema.parse({
+      category: searchParams.get('category'),
+      beerType: searchParams.get('beerType'),
+      inStock: searchParams.get('inStock'),
+      search: searchParams.get('search'),
+      page: searchParams.get('page'),
+      limit: searchParams.get('limit'),
+    })
 
-    console.log('🔍 Buscando productos con filtros:', { category, beerType, inStock, search })
+    console.log('🔍 Buscando productos con filtros:', filters)
 
     const products = await prisma.product.findMany({
       where: {
         isActive: true,
         // Filtro por categoría
-        ...(category && { categoryId: category }),
+        ...(filters.category && { categoryId: filters.category }),
         // Filtro por tipo de cerveza
-        ...(beerType && { beerType }),
+        ...(filters.beerType && { beerType: filters.beerType }),
         // Filtro por stock disponible
-        ...(inStock === 'true' && { stock: { gt: 0 } }),
+        ...(filters.inStock === 'true' && { stock: { gt: 0 } }),
         // Búsqueda por nombre o descripción
-        ...(search && {
+        ...(filters.search && {
           OR: [
-            { name: { contains: search, mode: 'insensitive' } },
-            { description: { contains: search, mode: 'insensitive' } },
-            { beerType: { contains: search, mode: 'insensitive' } }
+            { name: { contains: filters.search, mode: 'insensitive' } },
+            { description: { contains: filters.search, mode: 'insensitive' } },
+            { beerType: { contains: filters.search, mode: 'insensitive' } }
           ]
         })
       },
@@ -40,7 +46,9 @@ export async function GET(request: NextRequest) {
       orderBy: [
         { stock: 'desc' }, // Productos con stock primero
         { createdAt: 'desc' } // Más nuevos primero
-      ]
+      ],
+      skip: filters.page && filters.limit ? (filters.page - 1) * filters.limit : 0,
+      take: filters.limit || 12,
     })
 
     console.log(`✅ Encontrados ${products.length} productos`)
@@ -92,10 +100,13 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json()
-    console.log('📦 Creando producto:', body.name)
+    
+    // Validar datos de entrada
+    const validatedData = createProductSchema.parse(body)
+    console.log('📦 Creando producto:', validatedData.name)
 
     // Generar slug automáticamente
-    const slug = body.name
+    const slug = validatedData.name
       .toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '') // Quitar acentos
@@ -116,18 +127,18 @@ export async function POST(request: NextRequest) {
 
     const product = await prisma.product.create({
       data: {
-        name: body.name,
+        name: validatedData.name,
         slug,
-        description: body.description,
-        price: parseFloat(body.price),
-        beerType: body.beerType,
-        ibu: body.ibu ? parseInt(body.ibu) : null,
-        abv: parseFloat(body.abv),
-        measure: body.measure,
-        stock: parseInt(body.stock) || 0,
-        pairing: body.pairing || null,
-        imageUrl: body.imageUrl || null,
-        categoryId: body.categoryId,
+        description: validatedData.description,
+        price: validatedData.price,
+        beerType: validatedData.beerType,
+        ibu: validatedData.ibu || null,
+        abv: validatedData.abv,
+        measure: validatedData.measure,
+        stock: validatedData.stock,
+        pairing: validatedData.pairing || null,
+        imageUrl: validatedData.imageUrl || null,
+        categoryId: validatedData.categoryId,
       },
       include: {
         category: true,
