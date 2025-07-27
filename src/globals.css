@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Grenze:wght@200..900&display=swap');
+
+@font-face {
+  font-family: 'Brewski';
+  src: url('/fonts/BrewskiOriginalRegular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-grenze: 'Grenze', serif;
+  --font-brewski: 'Brewski', Arial, sans-serif;
+  
+  /* Colores de marca */
+  --color-primary: #476946;
+  --color-secondary: #873b39;
+  --color-accent: #ac8744;
+  --color-dark: #000000;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--font-grenze);
+}
+
+body {
+  color: var(--color-dark);
+  background: #ffffff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+} 

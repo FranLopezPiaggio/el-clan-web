@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Grenze } from 'next/font/google';
-import "@/styles/globals.css";
+import "../globals.css";
 
 const grenze = Grenze({
   subsets: ['latin'],
@@ -9,20 +9,21 @@ const grenze = Grenze({
 });
 
 export const metadata: Metadata = {
-  title: "Cervezas El Clan",
-  description: "Cerveza Artesanal de calidad para tus encuentros",
+  title: "El Clan - Cerveza Artesanal",
+  description: "Cerveza artesanal de calidad para tus encuentros",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body className={`antialiased ${grenze.variable}`}>
         {children}
       </body>
     </html>
   );
 }
+
