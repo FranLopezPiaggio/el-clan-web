@@ -47,7 +47,7 @@ const Catalog: React.FC<CatalogProps> = ({ beers = defaultBeers }) => {
     : beers.filter(beer => beer.category === activeFilter);
 
   return (
-    <section className={styles.catalog}>
+    <section id="catalog" className={styles.catalog}>
       <h2 className={styles.title}>Our Beers</h2>
       
       <div className={styles.filterContainer}>
