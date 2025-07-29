@@ -1,32 +1,50 @@
-// components/Hero/Hero.tsx
 'use client';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from '@/styles/Hero.module.css';
+
+import Brewery from '@/assets/img/breweryCo.png';
+import Hops from '@/assets/img/hops.webp';
 
 interface HeroProps {
   title?: string;
   subtitle?: string;
   ctaText?: string;
   onCtaClick?: () => void;
-  backgroundImage?: string;
+  backgroundImage?: string; // Se mantiene para compatibilidad, pero no se usa en el carrusel
 }
 
+const imagenesCarrusel = [
+  Brewery.src,
+  Hops.src
+];
+
 const Hero: React.FC<HeroProps> = ({
-  title = "Creando una cerveza artesanal de calidad",
-  subtitle = "Discover the art of brewing with Brewery Co., where tradition meets innovation to create exceptional beers.",
+  title = "Conoce nuestras cervezas, forma parte de El Clan.",
+  subtitle = "Conoce nuestras cervezas, forma parte de El Clan.",
   ctaText = "Conoce nuestras cervezas",
   onCtaClick,
-  backgroundImage = "https://lh3.googleusercontent.com/aida-public/AB6AXuAvA5bTjeorNp0E6wOXFbQX3wMCTOATkohwk9pDgefTEmSwMHKWTRzurbskvEwOnSEHU0IOWfT7HMoJ3IVckN9YiEbcOil2K0ZRLJ44J4_8oNyNIc8YmlN-DsCBFS0fLz1zGDZzAtlP7dIuQwPDGMyNrZMVCAbK-5K6i14_X3FRUfqBqe-RMwApUCELCpEJIkpQ0rzYATSsOUKkmuLBsUxzhuGrgR12cF12HAFKqioJ6c7axn1L3jIwvveABhMqMlW0NRNm2TxAeRM"
 }) => {
+  // Estado para el índice de la imagen actual del carrusel
+  const [indiceActual, setIndiceActual] = useState(0);
+  const intervaloRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Cambia la imagen cada 4 segundos
+  useEffect(() => {
+    intervaloRef.current = setInterval(() => {
+      setIndiceActual((prev) => (prev + 1) % imagenesCarrusel.length);
+    }, 4000);
+    return () => {
+      if (intervaloRef.current) clearInterval(intervaloRef.current);
+    };
+  }, []);
+
   // Función para hacer scroll suave al componente Catalog
   const handleCtaClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    // Busca el elemento con id 'catalog' y hace scroll suave
     const catalogSection = document.getElementById('catalog');
     if (catalogSection) {
       catalogSection.scrollIntoView({ behavior: 'smooth' });
     }
-    // Si el usuario pasó una función personalizada, también la ejecuta
     if (onCtaClick) {
       onCtaClick();
     }
@@ -41,24 +59,27 @@ const Hero: React.FC<HeroProps> = ({
           width: '100%',
           height: '100%',
           zIndex: 0,
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("${backgroundImage}")`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("${imagenesCarrusel[indiceActual]}")`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
+          transition: 'background-image 0.8s ease-in-out'
         }}
         aria-hidden="true"
       />
-      <div className={styles.heroContent} style={{ position: 'relative', zIndex: 1, background: 'transparent' }}>
-        <div className={styles.textContent}>
-          <h1 className={styles.title}>{title}</h1>
-          <h2 className={styles.subtitle}>{subtitle}</h2>
+      <div className="container">
+        <div className={styles.heroContent} style={{ position: 'relative', zIndex: 1, background: 'transparent' }}>
+          <div className={styles.textContent}>
+            <h1 className={styles.title}>{title}</h1>
+            <h2 className={styles.subtitle}>{subtitle}</h2>
+          </div>
+          <button
+            className={styles.ctaButton}
+            onClick={handleCtaClick}
+          >
+            <span className={styles.ctaText}>{ctaText}</span>
+          </button>
         </div>
-        <button
-          className={styles.ctaButton}
-          onClick={handleCtaClick}
-        >
-          <span className={styles.ctaText}>{ctaText}</span>
-        </button>
       </div>
     </section>
   );

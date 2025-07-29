@@ -17,6 +17,10 @@
   --color-secondary: #873b39;
   --color-accent: #ac8744;
   --color-dark: #000000;
+  
+  /* Layout */
+  --max-width: 1400px;
+  --container-padding: 1rem;
 }
 
 * {
@@ -34,12 +38,34 @@ body {
 
 body {
   color: var(--color-dark);
-  background: #ffffff;
+  background: #000000;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Contenedor principal para limitar el ancho del contenido */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  width: 100%;
+}
+
+/* Para pantallas más grandes, ajustar el padding */
+@media (min-width: 768px) {
+  :root {
+    --container-padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-padding: 3rem;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

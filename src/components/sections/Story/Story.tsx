@@ -21,32 +21,34 @@ const Story: React.FC<StoryProps> = ({
 }) => {
   return (
     <section className={styles.story}>
-      <h2 className={styles.sectionTitle}>{title}</h2>
-      
-      <div className={styles.storyContainer}>
-        <div className={styles.contentWrapper}>
-          <div 
-            className={styles.storyImage}
-            style={{ backgroundImage: `url("${image}")` }}
-          />
-          
-          <div className={styles.storyContent}>
-            <p className={styles.date}>Since 1995</p>
-            <p className={styles.storyTitle}>{subtitle}</p>
-            <div className={styles.storyText}>
-              <p className={styles.description}>{content}</p>
+      <div className="container">
+        <h2 className={styles.sectionTitle}>{title}</h2>
+        
+        <div className={styles.storyContainer}>
+          <div className={styles.contentWrapper}>
+            <div 
+              className={styles.storyImage}
+              style={{ backgroundImage: `url("${image}")` }}
+            />
+            
+            <div className={styles.storyContent}>
+              <p className={styles.date}>Since 1995</p>
+              <p className={styles.storyTitle}>{subtitle}</p>
+              <div className={styles.storyText}>
+                <p className={styles.description}>{content}</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      <div className={styles.ctaContainer}>
-        <button 
-          className={styles.ctaButton}
-          onClick={onCtaClick}
-        >
-          <span className={styles.ctaText}>{ctaText}</span>
-        </button>
+        
+        <div className={styles.ctaContainer}>
+          <button 
+            className={styles.ctaButton}
+            onClick={onCtaClick}
+          >
+            <span className={styles.ctaText}>{ctaText}</span>
+          </button>
+        </div>
       </div>
     </section>
   );

@@ -4,11 +4,11 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: rgba(26, 26, 26, 0.95);
+  background-color: rgb(0, 0, 0);
   backdrop-filter: blur(10px);
   transition: transform 0.3s ease;
   border-bottom: 1px solid #363636;
-  height: 90px;
+  height: 125px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -35,9 +35,9 @@
 }
 
 .mainHeader__container {
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 var(--container-padding);
 }
 
 .mainNav {
