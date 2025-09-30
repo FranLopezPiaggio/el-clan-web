@@ -1,6 +1,6 @@
 /* Footer.module.css */
 .footer {
-  background-color: #1a1a1a;
+  background-color: #000000;
   padding: 4rem 0 2rem;
   border-top: 1px solid #363636;
   font-family: var(--font-grenze);
@@ -28,7 +28,6 @@
 }
 
 .footerLogo img {
-  filter: brightness(0) invert(1);
   opacity: 0.9;
 }
 

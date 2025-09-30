@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import Logo from '@/assets/img/El-clan-calado-blanco.webp';
+import Logo from '@/assets/img/El-clan-logo-dorado.webp';
 import styles from '@/styles/Footer.module.css';
 
 const Footer: React.FC = () => {
@@ -112,7 +112,7 @@ const Footer: React.FC = () => {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                 </svg>
-                <span>Buenos Aires, Argentina</span>
+                <span>Villa Ballester, Buenos Aires, Argentina</span>
               </div>
             </div>
           </div>
@@ -124,7 +124,7 @@ const Footer: React.FC = () => {
         {/* Footer inferior */}
         <div className={styles.footerBottom}>
           <p className={styles.copyright}>
-            © 2024 El Clan. Todos los derechos reservados.
+            © 2025 El Clan. Todos los derechos reservados.
           </p>
           <div className={styles.legalLinks}>
             <a href="#" className={styles.legalLink}>Términos y Condiciones</a>

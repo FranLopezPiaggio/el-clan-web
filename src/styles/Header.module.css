@@ -14,6 +14,12 @@
   justify-content: flex-end;
 }
 
+.whatsappIcon:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+  color:rgb(88, 241, 33);
+}
+
 .mainHeader.visible {
   transform: translateY(0);
 }
@@ -48,6 +54,7 @@
 }
 
 .mainNav__left ul,
+.mainNav__center ul,
 .mainNav__right ul {
   list-style: none;
   margin: 0;
@@ -60,11 +67,18 @@
   margin-right: 120px;
 }
 
+.mainNav__center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
 .mainNav__right {
   margin-left: 300px;
 }
 
 .mainNav__left a,
+.mainNav__center a,
 .mainNav__right a {
   color: white;
   text-decoration: none;
@@ -75,6 +89,7 @@
 }
 
 .mainNav__left a:hover,
+.mainNav__center a:hover,
 .mainNav__right a:hover {
   color: #adadad;
 }
@@ -118,12 +133,19 @@
   }
   
   .mainNav__left ul,
+  .mainNav__center ul,
   .mainNav__right ul {
     gap: 1rem;
   }
   
   .mainNav__left {
     margin-right: 60px;
+  }
+  
+  .mainNav__center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
   }
   
   .mainNav__right {

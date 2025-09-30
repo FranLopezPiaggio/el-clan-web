@@ -23,7 +23,7 @@ interface CatalogProps {
 const defaultBeers: Beer[] = [
       {
         id: 1,
-        name: "La IPA",
+        name: "IPA",
         description: "Cerveza Ale de intenso aroma y sabor a lúpulo, con notas cítricas y frutales.",
         image: ElClanIpa.src,
         category: 'ale'
@@ -68,7 +68,7 @@ const Catalog: React.FC<CatalogProps> = ({ beers = defaultBeers }) => {
   return (
     <section id="catalog" className={styles.catalog}>
       <div className="container">
-        <h2 className={styles.title}>Our Beers</h2>
+        <h2 className={styles.title}>Nuestras Cervezas</h2>
         
         <div className={styles.filterContainer}>
           <div className={styles.filterTabs}>
