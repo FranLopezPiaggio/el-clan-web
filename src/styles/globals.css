@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap');
+
+@font-face {
+    font-family: 'Brewski';
+    src: url('../assets/fonts/BrewskiOriginalRegular.woff2') format('woff2'),
+        url('../assets/fonts/BrewskiOriginalRegular.woff') format('woff'),
+        url('../assets/fonts/BrewskiOriginalRegular.ttf') format('ttf'),
+        url('../assets/fonts/Brewski-Original.otf') format('otf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {}
+
+body {
+    color: white;
+    background-color: black;
+    margin: 0 !important;
+    padding: 0 !important;
+}

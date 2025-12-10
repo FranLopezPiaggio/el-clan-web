@@ -1,0 +1,149 @@
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: #050505;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+    font-family: 'Brewski', sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    display: block;
+    height: auto;
+    width: auto;
+    max-height: 64px;
+}
+
+/* Nav */
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.navList {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: #f5b453;
+    /* doradito cerveza */
+    transition: width 0.2s ease;
+}
+
+.link:hover {
+    color: #ffffff;
+}
+
+.link:hover::after {
+    width: 100%;
+}
+
+/* CTA */
+.ctaButton {
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    border: 1px solid #f5b453;
+    background: #f5b453;
+    color: #1a1208;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    font-family: 'Brewski', sans-serif;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.ctaButton:hover {
+    background: #ffce6d;
+    border-color: #ffce6d;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(245, 180, 83, 0.4);
+}
+
+.ctaButton:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Hamburguesa (por ahora solo desktop hidden) */
+.menuToggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    padding: 0.25rem;
+    cursor: pointer;
+}
+
+.menuToggle span {
+    width: 20px;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 999px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 0.75rem 1rem;
+    }
+
+    .navList {
+        display: none;
+        /* luego lo vas a reemplazar por un menú mobile */
+    }
+
+    .ctaButton {
+        padding: 0.5rem 1.1rem;
+        font-size: 0.8rem;
+    }
+
+    .menuToggle {
+        display: flex;
+    }
+
+    .nav {
+        gap: 0.75rem;
+    }
+}
