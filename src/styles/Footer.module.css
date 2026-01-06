@@ -1,17 +1,22 @@
 .footer {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Brewski', sans-serif !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .container {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Brewski', sans-serif !important;
 }
 
 .text {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Brewski', sans-serif !important;
 }
 
 .h3 {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Brewski', sans-serif !important;
+    text-align: center;
 }
 
 .copyRight {

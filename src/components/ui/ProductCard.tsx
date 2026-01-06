@@ -1,54 +1,57 @@
-import styles from '@/styles/ProductCard.module.css';
+import styles from "@/styles/ProductCard.module.css";
+import { Product } from "@/types/products";
 
-export interface Product {
-    id: number;
-    name: string;
-    description: string;
-    type: string; // IPA, Lager, Stout, etc.
-    abv: number; // Alcohol by volume
-    ibu?: number; // International Bitterness Units
-    image: string;
-    price?: number;
-}
-
-interface ProductCardProps {
+type ProductCardProps = {
     product: Product;
-}
+};
 
 const ProductCard = ({ product }: ProductCardProps) => {
     return (
-        <div className={styles.card}>
+        <article className={styles.productCard}>
+            {/* Stock Badge */}
+            {!product.inStock && <div className={styles.outOfStockBadge}>Agotado</div>}
+
+            {/* Imagen */}
             <div className={styles.imageContainer}>
-                <img
-                    src={product.image}
-                    alt={product.name}
-                    className={styles.image}
-                />
-                <div className={styles.badge}>{product.type}</div>
-            </div>
-
-            <div className={styles.content}>
-                <h3 className={styles.name}>{product.name}</h3>
-                <p className={styles.description}>{product.description}</p>
-
-                <div className={styles.specs}>
-                    <div className={styles.spec}>
-                        <span className={styles.specLabel}>ABV</span>
-                        <span className={styles.specValue}>{product.abv}%</span>
-                    </div>
-                    {product.ibu && (
-                        <div className={styles.spec}>
-                            <span className={styles.specLabel}>IBU</span>
-                            <span className={styles.specValue}>{product.ibu}</span>
-                        </div>
-                    )}
-                </div>
-
-                {product.price && (
-                    <div className={styles.price}>${product.price}</div>
+                {product.image ? (
+                    <img src={product.image} alt={product.name} className={styles.image} />
+                ) : (
+                    <div className={styles.placeholder}>🍺</div>
                 )}
             </div>
-        </div>
+
+            {/* Product Info*/}
+            <div className={styles.content}>
+                <h3 className={styles.name}>{product.name}</h3>
+                <p className={styles.type}>{product.type.toUpperCase()}</p>
+
+                {product.description && (
+                    <p className={styles.description}>{product.description}</p>
+                )}
+
+                {/* Specs */}
+                {(product.abv || product.ibu) && (
+                    <div className={styles.specs}>
+                        {product.abv && <span className={styles.spec}>ABV: {product.abv}%</span>}
+                        {product.ibu && <span className={styles.spec}>IBU: {product.ibu}</span>}
+                    </div>
+                )}
+
+                {/* Precio */}
+                <div className={styles.footer}>
+                    <p className={styles.price}>${product.price}</p>
+                    <button
+                        className={styles.button}
+                        disabled={!product.inStock}
+                    >
+                        {product.inStock ? 'Agregar' : 'No disponible'}
+                    </button>
+                </div>
+            </div>
+
+
+
+        </article>
     );
 };
 

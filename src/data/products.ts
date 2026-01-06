@@ -1,44 +1,60 @@
-// Define la estructura estricta de un producto
-export interface Product {
-    id: number;
-    name: string;
-    style: string;
-    price: number;
-    description: string;
-    ibu: number;
-    alcoholPercentage: number;
-    imagePath: string;
-    inStock: boolean;
-}
+import { Product } from '@/types/products';
+import ProductImage from '@/assets/img/el-clan-ipa-fotoproducto.png';
 
-// Los datos de la cervecería
-export const varieties: Product[] = [
+export const MOCK_PRODUCTS: Product[] = [
     {
         id: 1,
-        name: "Red",
-        style: "El Clan Red",
-        price: 1800, // Precio de ejemplo en tu moneda
-        description: "Cerveza roja. Perfecta para acompañar tus comidas.",
-        ibu: 60,
-        alcoholPercentage: 6,
-        imagePath: "/images/ipa.webp",
-        inStock: true
+        name: 'Golden Ale',
+        type: 'Dorada',
+        price: 350,
+        inStock: true,
+        image: ProductImage.src,
+        description: 'Cerveza rubia suave y refrescante',
+        abv: 4.5,
+        ibu: 18,
     },
     {
         id: 2,
-        name: "Golden",
-        style: "El Clan Golden",
-        price: 1950,
-        description: "Cerveza liviana, fresca y refrescante. Perfecta para acompañar tus comidas.",
+        name: 'Red Amber',
+        type: 'Red',
+        price: 380,
+        inStock: true,
+        image: ProductImage.src,
+        description: 'Cerveza roja con notas caramelizadas',
+        abv: 5.2,
+        ibu: 25,
+    },
+    {
+        id: 3,
+        name: 'IPA Hoppy',
+        type: 'Ipa',
+        price: 420,
+        inStock: false,
+        image: ProductImage.src,
+        description: 'IPA con intenso amargor y aroma cítrico',
+        abv: 6.5,
+        ibu: 60,
+    },
+    {
+        id: 4,
+        name: 'Pampeana Clásica',
+        type: 'Pampeana',
+        price: 320,
+        inStock: true,
+        image: ProductImage.src,
+        description: 'Estilo argentino tradicional',
+        abv: 4.8,
         ibu: 20,
-        alcoholPercentage: 5,
-        imagePath: "/images/porter.webp",
-        inStock: true
+    },
+    {
+        id: 5,
+        name: 'Apa',
+        type: 'Apa',
+        price: 450,
+        inStock: true,
+        image: ProductImage.src,
+        description: 'Cerveza negra con cuerpo robusto',
+        abv: 8.0,
+        ibu: 45,
     },
 ];
-
-// Datos de contacto que usará la lógica de WhatsApp
-export const CONTACT_INFO = {
-    whatsappNumber: "54911XXXXXX",
-    companyName: "Cervecería El Clan"
-}
