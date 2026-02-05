@@ -7,6 +7,7 @@ import Image from 'next/image';
 import LogoNegroDorado from '@/assets/img/el-clan-logo-negro-dorado.jpg';
 import { MOCK_PRODUCTS } from '@/data/products';
 import { Product } from '@/types/products';
+import CosmosBG from '@/components/layout/CosmosBG';
 
 
 const Catalog = () => {

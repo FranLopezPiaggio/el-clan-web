@@ -3,11 +3,6 @@
     min-height: 100vh;
     /* Fuente específica para el Catalog - sobrescribe la fuente global */
     font-family: 'Oswald', sans-serif !important;
-    /* Ruta relativa desde src/styles hacia src/assets/img */
-    background-image: url('../assets/img/black-gold-bg.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 .catalogContainer {
@@ -28,7 +23,7 @@
 .catalogFrame {
     border: 3px solid #d4a574;
     border-radius: 16px;
-    background-color: transparent 20%;
+    background-color: rgba(0, 0, 0, 0.2);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     overflow: hidden;
 }
