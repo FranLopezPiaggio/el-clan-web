@@ -1,6 +1,7 @@
 import Hero from "@/components/sections/Hero";
-import Catalog from "@/components/sections/Catalog";
-import About from "@/components/sections/About";
+import Catalog from "@/components/sections_kiwi/Catalog";
+//import About from "@/components/sections/About";
+import Historia from "@/components/sections_kiwi/Historia";
 
 export default function Home() {
   return (
@@ -8,7 +9,8 @@ export default function Home() {
       <main >
         <Hero />
         <Catalog />
-        <About />
+        {/* <About /> */}
+        <Historia />
       </main>
     </div>
   );

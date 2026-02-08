@@ -13,6 +13,8 @@
 .logoContainer {
     display: block;
     margin: 0 auto 1rem;
+    mask-image: radial-gradient(circle, black 60%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle, black 60%, transparent 100%);
 }
 
 .catalogContent {
