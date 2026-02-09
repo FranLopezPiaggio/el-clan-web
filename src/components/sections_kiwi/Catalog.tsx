@@ -46,9 +46,6 @@ const Catalogo = () => {
                     <span className="inline-block text-sm font-medium text-muted-gold tracking-widest uppercase mb-4">
                         Nuestras Cervezas
                     </span>
-                    <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-pure-white mb-6">
-                        CATÁLOGO
-                    </h2>
                     <p className="text-base sm:text-lg text-pure-white/60 leading-relaxed mx-auto">
                         Cada cerveza es el resultado de un proceso artesanal cuidadosamente
                         controlado. Desde la selección de maltas hasta el embotellado,

@@ -1,7 +1,16 @@
-import { Award, Leaf, Users, Clock } from 'lucide-react';
+'use client';
+
+import Image from 'next/image';
+import { Award, Leaf, Users, Clock, LucideIcon } from 'lucide-react';
+
+interface Valor {
+  icon: LucideIcon;
+  titulo: string;
+  descripcion: string;
+}
 
 const Historia = () => {
-  const valores = [
+  const valores: Valor[] = [
     {
       icon: Leaf,
       titulo: 'Ingredientes Locales',
@@ -41,36 +50,30 @@ const Historia = () => {
             </h2>
             <div className="space-y-4 text-deep-black/80 leading-relaxed">
               <p>
-                Todo comenzó en un pequeño garaje en Puerto Varas, donde dos amigos 
-                apasionados por la cerveza decidieron experimentar con recetas 
-                tradicionales patagónicas. Lo que empezó como un hobby se convirtió 
-                en una obsesión por crear la cerveza perfecta.
+                El clan es mucho mas que una cerveza artesanal, es el resultado de la hermandad de 4 hermanos que decidimos transformar nuestra conexion en algo que se pudiera brindar, compartir, disfrutar.
               </p>
               <p>
-                Hoy, más de una década después, seguimos manteniendo ese espíritu 
-                artesanal que nos define. Cerveza Patagonia Brew es el resultado de 
-                años de perfeccionamiento, respeto por los ingredientes naturales y 
-                un compromiso inquebrantable con la calidad.
+                Cada botella de El Clan contiene mas que lupulo y cebada, refleja nuestras raices, nuestras risas, nuestros desacuerdos y, sobre todo, nuestro compromiso con la calidad y autenticidad.
               </p>
               <p>
-                Nuestra cervecería, ubicada en el corazón de la Patagonia chilena, 
-                utiliza agua pura de deshielo andino y los mejores ingredientes 
-                locales para crear cervezas que capturan la esencia única de esta 
-                tierra mágica.
+                Elaboramos cerveza artesanal en lotes pequeños cuidando cada detalle y dejando que cada estilo cuente una parte de nuestra historia.
+              </p>
+              <p>
+                En El Clan, creemos que las mejores cosas se hacen en familia...y si es con una buena birra, mucho mejor.
               </p>
             </div>
 
             {/* Signature */}
             <div className="mt-8 pt-8 border-t border-deep-black/10">
               <p className="text-deep-black/60 text-sm italic">
-                "Cada botella lleva consigo el espíritu indomable de la Patagonia"
+                &quot;Cada botella tiene nuestra historia&quot;
               </p>
               <div className="mt-4 flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-deep-black flex items-center justify-center">
-                  <span className="text-patagonia-gold font-bold text-lg">P</span>
+                  <span className="text-patagonia-gold font-bold text-lg">F</span>
                 </div>
                 <div>
-                  <p className="font-semibold text-deep-black">Pedro & Martín</p>
+                  <p className="font-semibold text-deep-black">Ramiro, Silvia, Romina y Nicolas</p>
                   <p className="text-sm text-deep-black/60">Fundadores</p>
                 </div>
               </div>
@@ -80,11 +83,14 @@ const Historia = () => {
           {/* Right Column - Image Grid */}
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-4">
-              <div className="aspect-[4/5] rounded-lg overflow-hidden">
-                <img
+              <div className="relative aspect-[4/5] rounded-lg overflow-hidden">
+                <Image
                   src="/cerveza-ipa.jpg"
                   alt="Proceso de elaboración"
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 20vw"
+                  className="object-cover"
+                  priority
                 />
               </div>
               <div className="aspect-square rounded-lg bg-deep-black/10 flex items-center justify-center">
@@ -109,11 +115,13 @@ const Historia = () => {
                   </div>
                 </div>
               </div>
-              <div className="aspect-[4/5] rounded-lg overflow-hidden">
-                <img
+              <div className="relative aspect-[4/5] rounded-lg overflow-hidden">
+                <Image
                   src="/cerveza-stout.jpg"
                   alt="Nuestra cervecería"
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 20vw"
+                  className="object-cover"
                 />
               </div>
             </div>
@@ -132,22 +140,25 @@ const Historia = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {valores.map((valor, index) => (
-              <div
-                key={index}
-                className="text-center p-6 rounded-lg bg-deep-black/5 hover:bg-deep-black/10 transition-colors duration-300"
-              >
-                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-deep-black flex items-center justify-center">
-                  <valor.icon size={24} className="text-patagonia-gold" />
+            {valores.map((valor, index) => {
+              const IconComponent = valor.icon;
+              return (
+                <div
+                  key={`valor-${index}`}
+                  className="text-center p-6 rounded-lg bg-deep-black/5 hover:bg-deep-black/10 transition-colors duration-300"
+                >
+                  <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-deep-black flex items-center justify-center">
+                    <IconComponent size={24} className="text-patagonia-gold" />
+                  </div>
+                  <h4 className="text-lg font-bold text-deep-black mb-2">
+                    {valor.titulo}
+                  </h4>
+                  <p className="text-sm text-deep-black/60 leading-relaxed">
+                    {valor.descripcion}
+                  </p>
                 </div>
-                <h4 className="text-lg font-bold text-deep-black mb-2">
-                  {valor.titulo}
-                </h4>
-                <p className="text-sm text-deep-black/60 leading-relaxed">
-                  {valor.descripcion}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

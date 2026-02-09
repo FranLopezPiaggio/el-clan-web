@@ -8,8 +8,8 @@
     font-family: 'Brewski';
     src: url('../assets/fonts/BrewskiOriginalRegular.woff2') format('woff2'),
         url('../assets/fonts/BrewskiOriginalRegular.woff') format('woff'),
-        url('../assets/fonts/BrewskiOriginalRegular.ttf') format('ttf'),
-        url('../assets/fonts/Brewski-Original.otf') format('otf');
+        url('../assets/fonts/BrewskiOriginalRegular.ttf') format('truetype'),
+        url('../assets/fonts/Brewski-Original.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -19,7 +19,7 @@ html {
     scroll-behavior: smooth;
 }
 
-* {}
+
 
 body {
     color: white;

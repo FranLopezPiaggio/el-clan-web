@@ -4,6 +4,9 @@ module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        brewski: ['Brewski', 'sans-serif'],
+      },
       colors: {
         // Colores personalizados de la cervecería
         'deep-black': '#050505',
