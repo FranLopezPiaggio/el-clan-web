@@ -1,6 +1,11 @@
-import styles from '@/styles/Hero.module.css'
+'use client';
+
+import styles from '@/styles/Hero.module.css';
+import { useOrderModal } from '@/contexts/OrderModalContext';
 
 const Hero = () => {
+    const { openModal } = useOrderModal();
+
     return (
         <section
             className={styles.heroContainer}
@@ -11,7 +16,10 @@ const Hero = () => {
                     <p className={styles.heroText}>
                         El clan de los que aman la cerveza artesanal
                     </p>
-                    <button className={styles.button}>
+                    <button
+                        className={styles.button}
+                        onClick={openModal}
+                    >
                         sos parte de el clan?
                     </button>
                 </div>

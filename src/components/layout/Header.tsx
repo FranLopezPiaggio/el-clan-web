@@ -21,12 +21,7 @@ const Header = (({
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const handleCTAClick = () => {
-        // Aquí conectarás el modal más adelante
         onCTAClick?.();
-    };
-
-    const handleOpenModal = () => {
-        console.log('Abrir modal de pedido'); // placeholder
     };
 
     return (
